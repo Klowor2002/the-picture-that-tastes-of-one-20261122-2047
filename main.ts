@@ -171,8 +171,8 @@ function slicePixel(x: number, y: number): RGB | null {
   // --- flesh --------------------------------------------------------------
   // radial colour: pale gold near the core, deep orange near the pith
   const rt = rr / R_PITH;
-  let c = mix(FLESH_IN, FLESH_OUT, smoothstep(0.05, 0.85, rt));
-  c = mix(c, FLESH_DEEP, smoothstep(0.88, 1, rt) * 0.55);
+  let c = mix(FLESH_IN, FLESH_OUT, smoothstep(0.05, 0.78, rt));
+  c = mix(c, FLESH_DEEP, smoothstep(0.82, 1, rt) * 0.8);
 
   // per-segment brightness so each wedge reads separately
   const seg = Math.floor(((ang + Math.PI) / (Math.PI * 2)) * SEGMENTS);
@@ -183,8 +183,8 @@ function slicePixel(x: number, y: number): RGB | null {
   // juice vesicles: fine cellular speckle, brighter and glossier
   const ves = fbm(x * 0.09 + 3.3, y * 0.09 + 8.8);
   const ves2 = vnoise(x * 0.021 + 11, y * 0.021 + 4);
-  c = mix(c, [255, 214, 110], Math.max(0, ves) * 0.36);
-  c = mix(c, [255, 240, 170], Math.max(0, ves2) * 0.22);
+  c = mix(c, [255, 214, 110], Math.max(0, ves) * 0.5);
+  c = mix(c, [255, 240, 170], Math.max(0, ves2) * 0.34);
 
   // pale membranes between segments
   const md = membraneDist(x, y);
